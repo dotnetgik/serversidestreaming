@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService1.Protos";
+
+// The bookshelf service definition
+service BookService {
+	// Get full list of books
+	rpc GetAllBooks (AllBooksRequest) returns (stream AllBooksReply);
+}
+
+// The Request message containing specific parameters
+message AllBooksRequest {
+	int32 itemsPerPage = 1;
+}
+
+// The Reply message containing the book list
+message AllBooksReply {
+	repeated Book Books = 1;
+}
+
+// The Book message represents a book instance
+message Book {
+	string title = 1;
+	string description = 2;
+}
